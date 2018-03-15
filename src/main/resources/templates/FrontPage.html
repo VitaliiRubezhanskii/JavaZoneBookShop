@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; width=device-width,initial-scale=1.0; charset=UTF-8"/>
+
+    <title> JavaZone</title>
+
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"  type="text/css"   rel="stylesheet" />
+    <link th:href="@{/css/FontPage.css}"  type="text/css" />
+    <link  rel="stylesheet" type="text/css" th:href="@{/css/FontPage2.css}"/>
+    <link  rel="stylesheet" type="text/css" th:href="@{/css/test.css}"/>
+    <link  rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+    <script th:src="@{/js/FrontPage.js}"></script>
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+<div class=" navbar navbar-default navbar-fixed-top" id="navbar-collapse-2">
+
+    <ul class="nav navbar-nav navbar-left">
+
+        <li>
+            <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>
+        </li>
+
+        <li>
+            <a class="btn btn-default btn-outline btn-circle collapsed"  style="float:left" data-toggle="collapse" href="#nav-collapse3" aria-expanded="false" aria-controls="nav-collapse3">Sign up</a>
+        </li>
+
+    </ul>
+
+    <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="#"> My Orders <span class="badge">0</span></a>
+        </li>
+        <li>
+
+
+        </li>
+
+        <li>
+            <div class="navbar-right">
+                <header id="header">
+
+                    <nav class="navbar navbar-light bg-faded" style="padding: 0px 40px">
+                        <form class="form-inline">
+                            <input id="form" class="form-control mr-sm-2" type="text" placeholder="Search"/>
+                            <button id="btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </nav>
+                </header>
+            </div>
+        </li>
+    </ul>
+
+
+
+    <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
+
+
+        <form class="navbar-form navbar-right form-inline" role="form">
+
+            <div class="form-group">
+                <label class="sr-only" for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" placeholder="Email"   />
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="Password">Password</label>
+                <input type="password" class="form-control" id="Password" placeholder="Password"  />
+            </div>
+
+
+            <button type="submit" class="btn btn-success">Sign in</button>
+        </form>
+
+
+    </div>
+
+
+    <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse3">
+
+
+        <form class="navbar-form navbar-right form-inline" role="form">
+            <div class="form-group">
+                <label class="sr-only" for="First Name">First Name</label>
+                <input type="email" class="form-control" id="Email" placeholder="First Name"   />
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="Last Name">Last Name</label>
+                <input type="email" class="form-control" id="Last Name" placeholder="Last Name"   />
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" placeholder="Email"   />
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="Password">Password</label>
+                <input type="password" class="form-control" id="Password" placeholder="Password"  />
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="Confirm Password">Confirm Password</label>
+                <input type="password" class="form-control" id="Confirm Password" placeholder="Confirm Password"  />
+            </div>
+
+
+            <button type="submit" class="btn btn-success">Sign up</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+<div class="tab" style="position:fixed; width: 130px;padding-top: 55px">
+    <button class="tablinks" onclick="openCity(event, 'Spring')" id="defaultOpen">Spring</button>
+    <button class="tablinks" onclick="openCity(event, 'Hibernate')">Hibernate</button>
+    <button class="tablinks" onclick="openCity(event, 'Java EE')">Java EE</button>
+    <button class="tablinks" onclick="openCity(event, 'Java SE')">Java SE</button>
+    <button class="tablinks" onclick="openCity(event, 'OOP and Patterns')">OOP</button>
+    <button class="tablinks" onclick="openCity(event, 'Multithreading')">Multithreading</button>
+    <button class="tablinks" onclick="openCity(event, 'Scala')">Scala</button>
+    <button class="tablinks" onclick="openCity(event, 'REST')">REST</button>
+    <button class="tablinks" onclick="openCity(event, 'Browse All')">Browse All</button>
+</div>
+
+<div class="container" style="padding-bottom: 300px; padding-top: 55px" >
+
+    <div  class="column">
+        <div  id="Spring" class="tabcontent" >
+            <h3 class="text-center">Spring</h3>
+
+        <div th:each="SpringBook : ${SpringBooks}">
+            <div  class="col-md-4 text-center">
+                    <div  class="thumbnail">
+
+                        <div  class="carousel-inner" role="listbox">
+
+                            <img th:attr="src=@{|/img/${SpringBook.coverImage}.jpg|},title=${SpringBook.coverImage}" class="card-block text-nowrap" alt="" width="150" height="200" />
+
+                            <div class="caption">
+                                <p th:text="|${SpringBook.price} $|"> </p>
+
+                                <a th:href="@{'/welcome/book?ISBN='+${SpringBook.ISBN}}"  class="btn btn-primary">
+                                    <span class="glyphicon-info-sign glyphicon"></span> Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+<div id="Hibernate" class="tabcontent">
+    <h3 class="text-center">Hibernate</h3>
+
+    <div th:each="HibernateBook : ${HibernateBooks}">
+        <div  class="col-md-4 text-center">
+            <div  class="thumbnail">
+
+                <div  class="carousel-inner" role="listbox">
+
+                    <img th:attr="src=@{|/img/${HibernateBook.coverImage}.jpg|},title=${HibernateBook.coverImage}" class="card-block text-nowrap" alt="" width="150" height="200" />
+
+                    <div class="caption">
+                        <p th:text="|${HibernateBook.price} $|"> </p>
+
+                        <a href=""  class="btn btn-primary">
+                            <span class="glyphicon-info-sign glyphicon"></span> Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="Java EE" class="tabcontent">
+    <h3 class="text-center">Java EE</h3>
+
+    <div th:each="JavaEEbook : ${JavaEEbooks}">
+        <div  class="col-md-4 text-center">
+            <div  class="thumbnail">
+
+                <div  class="carousel-inner" role="listbox">
+
+                    <img th:attr="src=@{|/img/${JavaEEbook.coverImage}.jpg|},title=${JavaEEbook.coverImage}" class="card-block text-nowrap" alt="" width="150" height="200" />
+
+                    <div class="caption">
+                        <p th:text="|${JavaEEbook.price} $|"> </p>
+
+                        <a href=""  class="btn btn-primary">
+                            <span class="glyphicon-info-sign glyphicon"></span> Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="Java SE" class="tabcontent">
+    <h3 class="text-center">Java SE</h3>
+
+    <div th:each="JavaSEbook : ${JavaSEbooks}">
+        <div  class="col-md-4 text-center">
+            <div  class="thumbnail">
+
+                <div  class="carousel-inner" role="listbox">
+
+                    <img th:attr="src=@{|/img/${JavaSEbook.coverImage}.jpg|},title=${JavaSEbook.coverImage}" class="card-block text-nowrap" alt="" width="150" height="200" />
+
+                    <div class="caption">
+                        <p th:text="|${JavaSEbook.price} $|"> </p>
+
+                        <a href=""  class="btn btn-primary">
+                            <span class="glyphicon-info-sign glyphicon"></span> Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="OOP and Patterns" class="tabcontent">
+    <h3 class="text-center">OOP and Patterns</h3>
+
+    <div th:each="OOPbook : ${OOPbooks}">
+        <div  class="col-md-4 text-center">
+            <div  class="thumbnail">
+
+                <div  class="carousel-inner" role="listbox">
+
+                    <img th:attr="src=@{|/img/${OOPbook.coverImage}.jpg|},title=${OOPbook.coverImage}" class="card-block text-nowrap" alt="" width="150" height="200" />
+
+                    <div class="caption">
+                        <p th:text="|${OOPbook.price} $|"> </p>
+
+                        <a href=""  class="btn btn-primary">
+                            <span class="glyphicon-info-sign glyphicon"></span> Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="Multithreading" class="tabcontent">
+    <h3 class="text-center">Multithreading</h3>
+
+
+    <div th:each="MultiBook : ${MultiBooks}">
+        <div  class="col-md-4 text-center">
+            <div  class="thumbnail">
+
+                <div  class="carousel-inner" role="listbox">
+
+                    <img th:attr="src=@{|/img/${MultiBook.coverImage}.jpg|},title=${MultiBook.coverImage}" class="card-block text-nowrap" alt="" width="150" height="200" />
+
+                    <div class="caption">
+                        <p th:text="|${MultiBook.price} $|"> </p>
+
+                        <a href=""  class="btn btn-primary">
+                            <span class="glyphicon-info-sign glyphicon"></span> Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="Scala" class="tabcontent">
+    <h3 class="text-center">Scala</h3>
+
+    <div th:each="ScalaBook : ${ScalaBooks}">
+        <div  class="col-md-4 text-center">
+            <div  class="thumbnail">
+
+                <div  class="carousel-inner" role="listbox">
+
+                    <img th:attr="src=@{|/img/${ScalaBook.coverImage}.jpg|},title=${ScalaBook.coverImage}" class="card-block text-nowrap" alt="" width="150" height="200" />
+
+                    <div class="caption">
+                        <p th:text="|${ScalaBook.price} $|"> </p>
+
+                        <a href=""  class="btn btn-primary">
+                            <span class="glyphicon-info-sign glyphicon"></span> Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="REST" class="tabcontent">
+    <h3 class="text-center">REST</h3>
+
+    <div th:each="RESTbook : ${RESTbooks}">
+        <div  class="col-md-4 text-center">
+            <div  class="thumbnail">
+
+                <div  class="carousel-inner" role="listbox">
+
+                    <img th:attr="src=@{|/img/${RESTbook.coverImage}.jpg|},title=${RESTbook.coverImage}" class="card-block text-nowrap" alt="" width="150" height="200" />
+
+                    <div class="caption">
+                        <p th:text="|${RESTbook.price} $|"> </p>
+
+                        <a href=""  class="btn btn-primary">
+                            <span class="glyphicon-info-sign glyphicon"></span> Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="Browse All" class="tabcontent">
+    <h3 class="text-center">All Books</h3>
+
+    <div th:each="AllBook : ${AllBooks}">
+        <div  class="col-md-4 text-center">
+            <div  class="thumbnail">
+
+                <div  class="carousel-inner" role="listbox">
+
+                    <img th:attr="src=@{|/img/${AllBook.coverImage}.jpg|},title=${AllBook.coverImage}" class="card-block text-nowrap" alt="" width="150" height="200" />
+
+                    <div class="caption">
+                        <p th:text="|${AllBook.price} $|"> </p>
+
+                        <a href=""  class="btn btn-primary">
+                            <span class="glyphicon-info-sign glyphicon"></span> Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+</div>
+<script th:src="@{/js/FrontPage.js}">
+
+</script>
+<div id="footer-wrapper">
+    <footer id="footer">
+        <p class="text-center" ><font size="2" face="verdana">(c) 2018 <a href=""> Vitalii Rubezhanskii</a></font> </p>
+    </footer>
+</div>
+        </body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; width=device-width,initial-scale=1.0; charset=UTF-8"/>
+    <title>Title</title>
+
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"  type="text/css"   rel="stylesheet" />
+    <link th:href="@{/css/FontPage.css}"  type="text/css" />
+    <link  rel="stylesheet" type="text/css" th:href="@{/css/FontPage2.css}"/>
+    <link  rel="stylesheet" type="text/css" th:href="@{/css/test.css}"/>
+    <link  rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+    <script th:src="@{/js/FrontPage.js}"></script>
+    <script th:src="@{/js/BookPage.js}"></script>
+    <link  rel="stylesheet" type="text/css" th:href="@{/css/BookPage.css}"/>
+</head>
+<body>
+
+
+<button class="tablink" onclick="openPage('Books', this, '#00008B')">Books</button>
+<button class="tablink" onclick="openPage('Sales', this, '#00008B')">Sales</button>
+
+<form>
+    <div id="Books" class="tabcontent">
+
+
+        <div class="container">
+            <div class="well lead">Add Book</div>
+
+            <form>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-lable" for=""><span class="lead" >ISBN</span></label>
+                    <input type="text" path="ISBN" class="form-control input-sm" />
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-lable" for="bookTitle"><span class="lead" >Title</span></label>
+                    <input type="text" path="bookTitle" class="form-control input-sm" />
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-lable" for="author.author1"><span class="lead" >Author</span></label>
+                    <input type="text" path="author.author1" class="form-control input-sm" />
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-lable" for="category.category"><span class="lead" >Category</span></label>
+                    <input type="text" path="category.category" class="form-control input-sm" />
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-lable" for="publisher"><span class="lead" >Publisher</span></label>
+                    <input type="text" path="publisher" class="form-control input-sm" />
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-lable" for="language"><span class="lead" >Language</span></label>
+                    <input type="text" path="language" class="form-control input-sm" />
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-lable" for="price"><span class="lead" >Price</span></label>
+                    <input type="text" path="price" class="form-control input-sm" />
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-lable" for="inventoryStock"><span class="lead" >In Stock</span></label>
+                    <input type="text" path="inventoryStock" class="form-control input-sm" />
+                </div>
+
+                <div class="form-group">
+                    <label for="details"><span class="lead">Details</span></label>
+                    <!-- <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px; width:1150px; border-radius: 5px; padding: 20px;"></textarea> -->
+
+                    <textarea type="text" path="details" placeholder="Write something.." class="form-control input-sm" />
+                </div>
+
+                <div class="column">
+                        <input type="submit" value="Save" class="btn btn-primary btn-sm" />
+                </div>
+            </form>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+<div class="generic-container">
+    <div class="panel panel-default">
+        <table class="table table-hover tablesorter" id="myTable">
+            <thead>
+            <th>Book ID</th>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Publisher</th>
+            <th>Language</th>
+            <th>Details</th>
+            </thead>
+            <tbody>
+
+
+                <tr th:each="book : ${listBooks}">
+                    <td th:text="${book.bookId}"></td>
+                    <td th:text="${book.ISBN}"></td>
+                    <td th:text="${book.bookTitle}"></td>
+                    <td th:text="${book.publisher}"></td>
+                    <td th:text="${book.language}"></td>
+                    <td th:text="${book.details}"></td>
+
+                    <td><a href="" class="btn btn-success custom-width">edit</a></td>
+                    <td><a href="" class="btn btn-danger custom-width">delete</a></td>
+                </tr>
+
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="Sales" class="tabcontent">
+
+
+
+    <div class="well lead">Sales and Orders</div>
+    <div class="generic-container">
+
+        <div class="panel panel-default">
+            <table class="table table-hover">
+                <thead>
+                <th>Book ID</th>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Publisher</th>
+                <th>Language</th>
+                <th>Details</th>
+                </thead>
+                <tbody>
+
+
+                    <tr th:each="book : ${listBooks}">
+                        <td th:text="${book.bookId}"></td>
+                        <td th:text="${book.ISBN}"></td>
+                        <td th:text="${book.bookTitle}"></td>
+                        <td th:text="${book.publisher}"></td>
+                        <td th:text="${book.language}"></td>
+                        <td th:text="${book.details}"></td>
+
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <div class="generic-container">
+        <div class="panel panel-default">
+            <table class="table table-hover">
+                <thead>
+                <th>Book ID</th>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Publisher</th>
+                <th>Language</th>
+                <th>Details</th>
+                </thead>
+                <tbody>
+
+
+                    <tr th:each="book : ${listBooks}">
+                        <td th:text="${book.bookId}"></td>
+                        <td th:text="${book.ISBN}"></td>
+                        <td th:text="${book.bookTitle}"></td>
+                        <td th:text="${book.publisher}"></td>
+                        <td th:text="${book.language}"></td>
+                        <td th:text="${book.details}"></td>
+
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
