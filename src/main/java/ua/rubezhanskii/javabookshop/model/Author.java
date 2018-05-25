@@ -70,7 +70,7 @@ public class Author implements Serializable {
         this.author4 = author4;
     }
 
-    @OneToMany(mappedBy = "author",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "author",fetch = FetchType.LAZY)
     public Set<AuthorBook> getAuthorBooks() {
         return authorBooks;
     }

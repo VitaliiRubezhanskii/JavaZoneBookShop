@@ -1,16 +1,15 @@
-package ua.rubezhanskii.javabookshop.controller;
+package ua.rubezhanskii.javabookshop.restcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ua.rubezhanskii.javabookshop.datamanagement.service.BookService;
 import ua.rubezhanskii.javabookshop.model.Book;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("/welcome/admin/books")
 public class BookController {
 
@@ -31,30 +30,34 @@ public class BookController {
 
 
     //<==========================================Add Book==========================================================>
-    @RequestMapping(value = "/addBook", method = RequestMethod.POST)
-    public ModelAndView saveOrUpdate(@ModelAttribute("book")Book book) {
+    @PostMapping("/book")
+    public Book save(@RequestBody Book book) {
             bookService.saveOrUpdate(book);
-        return new ModelAndView("redirect:/welcome/rest/books/");
+        return book;
     }
+
     //<==========================================Remove Category==========================================================>
-    @RequestMapping(value = "/remove/{bookId}")
-    private ModelAndView removeBook(@PathVariable("bookId") Integer bookId){
-     //   bookService.delete(bookId);
-        return new ModelAndView("redirect:/welcome/rest/books/");
+    @DeleteMapping("/book")
+    public Book delete(@RequestBody Book book){
+     return bookService.delete(book);
+
     }
     //<==========================================Edit Category==========================================================>
 
-    @RequestMapping("/edit/{bookId}")
-    public ModelAndView editBook(@PathVariable("bookId") Integer bookId){
-        Book book=bookService.getBookById(bookId);
-        return new ModelAndView("AdminPage","newBook",book);
+    @PutMapping("/edit")
+    public Book edit(@RequestBody Book book){
+        return bookService.getBookById(book.getBookId());
+            }
 
+
+    @GetMapping("/book/{isbn}")
+    public Book getBookByISBN(@PathVariable("isbn") String ISBN){
+        return bookService.getBookByIsbn(ISBN);
     }
 
-    @RequestMapping(value = "/edit/save",method = RequestMethod.POST)
-    public ModelAndView editSave(@ModelAttribute("book") Book book){
-        bookService.saveOrUpdate(book);
-        return new ModelAndView("redirect:/welcome/rest/books/");
+    @GetMapping("/book/all")
+    public List<Book> getBooks(){
+        return bookService.getBooks();
     }
 
 }

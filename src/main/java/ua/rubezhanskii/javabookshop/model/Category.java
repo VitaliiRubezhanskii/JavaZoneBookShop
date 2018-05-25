@@ -42,7 +42,7 @@ public class Category implements Serializable {
         this.category = category;
     }
 
-    @OneToMany(mappedBy = "category",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
     public Set<Book> getBooks() {
         return books;
     }

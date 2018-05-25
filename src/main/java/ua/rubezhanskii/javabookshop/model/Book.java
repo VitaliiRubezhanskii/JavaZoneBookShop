@@ -1,5 +1,7 @@
 package ua.rubezhanskii.javabookshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -88,6 +90,7 @@ public class Book implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
+    @JsonIgnore
     public Category getCategory() {
         return category;
     }
@@ -128,7 +131,9 @@ public class Book implements Serializable {
         this.details = details;
     }
 
-    @OneToMany(mappedBy = "book",fetch = FetchType.EAGER)
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "book",fetch = FetchType.LAZY)
     public Set<Cart> getCarts() {
         return carts;
     }
@@ -136,7 +141,8 @@ public class Book implements Serializable {
         this.carts = carts;
     }
 
-    @OneToMany(mappedBy = "book",fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "book",fetch = FetchType.LAZY)
     public Set<AuthorBook> getAuthorBooks() {
         return authorBooks;
     }

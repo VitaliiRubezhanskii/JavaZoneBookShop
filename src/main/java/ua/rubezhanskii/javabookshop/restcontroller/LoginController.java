@@ -1,4 +1,4 @@
-package ua.rubezhanskii.javabookshop.controller;
+package ua.rubezhanskii.javabookshop.restcontroller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

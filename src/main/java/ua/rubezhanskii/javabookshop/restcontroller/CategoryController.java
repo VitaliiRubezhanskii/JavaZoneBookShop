@@ -1,4 +1,4 @@
-package ua.rubezhanskii.javabookshop.controller;/*package ua.rubezhanskii.javabookshop.controller;
+package ua.rubezhanskii.javabookshop.restcontroller;/*package ua.rubezhanskii.javabookshop.restcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
