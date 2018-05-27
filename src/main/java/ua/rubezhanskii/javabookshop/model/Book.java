@@ -57,6 +57,7 @@ public class Book implements Serializable {
     }
 
     @Transient
+    @JsonIgnore
     public Author getAuthor() {
         return author;
     }
@@ -151,6 +152,7 @@ public class Book implements Serializable {
     }
 
     @Column(name="bookQuantity")
+    @JsonIgnore
     public Integer getBookQuantity() {
         return bookQuantity;
     }
@@ -159,6 +161,7 @@ public class Book implements Serializable {
     }
 
     @Column(name="inventoryStock")
+    @JsonIgnore
     public Integer getInventoryStock() {
         return InventoryStock;
     }

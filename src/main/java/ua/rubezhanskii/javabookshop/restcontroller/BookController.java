@@ -37,9 +37,9 @@ public class BookController {
     }
 
     //<==========================================Remove Category==========================================================>
-    @DeleteMapping("/book")
-    public Book delete(@RequestBody Book book){
-     return bookService.delete(book);
+    @DeleteMapping("/book/{isbn}")
+    public Book delete(@PathVariable("isbn") String ISBN ){
+     return bookService.delete(bookService.getBookByIsbn(ISBN));
 
     }
     //<==========================================Edit Category==========================================================>
@@ -55,6 +55,7 @@ public class BookController {
         return bookService.getBookByIsbn(ISBN);
     }
 
+    @CrossOrigin(origins = "http://localhost:4203")
     @GetMapping("/book/all")
     public List<Book> getBooks(){
         return bookService.getBooks();
