@@ -2,6 +2,7 @@ package ua.rubezhanskii.javabookshop.datamanagement.service.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import ua.rubezhanskii.javabookshop.datamanagement.repository.CartRepository;
 import ua.rubezhanskii.javabookshop.datamanagement.service.CartService;
 import ua.rubezhanskii.javabookshop.dto.CartItemDto;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Repository
+@Service
 public class CartServiceImpl implements CartService {
 
     @Autowired

@@ -3,13 +3,14 @@ package ua.rubezhanskii.javabookshop.datamanagement.service.serviceImpl;
 
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import ua.rubezhanskii.javabookshop.datamanagement.service.CustomerService;
 import ua.rubezhanskii.javabookshop.model.Customer;
 
 import java.util.List;
 
 
-@Repository
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
     @Override

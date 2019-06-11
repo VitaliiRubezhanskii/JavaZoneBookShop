@@ -37,7 +37,7 @@ public class HomeController {
         model.addAttribute("MultiBooks",bookService.getBooksFromCategory(4));
         model.addAttribute("ScalaBooks",bookService.getBooksFromCategory(8));
         model.addAttribute("RESTbooks",bookService.getBooksFromCategory(9));
-        model.addAttribute("AllBooks",bookService.getBooks());
+//        model.addAttribute("AllBooks",bookService.getBooks());
        // model.addAttribute("countCartItems",bookService.countItems(1));
        // modelAndView.addObject("countCartItems",cartService.countItems(1));
 

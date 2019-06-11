@@ -123,22 +123,6 @@ public class Customer implements Serializable {
         this.email = email;
     }
 
-    @OneToMany(mappedBy = "customer")
-    public Set<Order> getOrders() {
-        return orders;
-    }
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
-    @OneToMany(mappedBy = "customer")
-    public Set<Cart> getCarts() {
-        return carts;
-    }
-    public void setCarts(Set<Cart> carts) {
-        this.carts = carts;
-    }
-
     @Override
     public String toString() {
         return "Customer{" +

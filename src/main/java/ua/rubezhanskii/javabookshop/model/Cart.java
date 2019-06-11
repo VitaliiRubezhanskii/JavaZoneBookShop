@@ -62,7 +62,7 @@ public class Cart implements Serializable {
         this.creationTime = creationTime;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="customerId")
     public Customer getCustomer() {
         return customer;
