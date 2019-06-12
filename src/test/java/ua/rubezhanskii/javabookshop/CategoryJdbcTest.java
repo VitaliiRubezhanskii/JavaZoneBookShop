@@ -32,7 +32,7 @@ public class CategoryJdbcTest {
              "\n" +
              "  category   VARCHAR(30) NULL\n" +
              ");");
-     statement.execute("INSERT INTO category (categoryId, category) VALUES\n" +
+     statement.execute("INSERT INTO category (categoryId, categoryName) VALUES\n" +
              "  (1, 'Spring'),\n" +
              "  (2, 'OOP and Patterns'),\n" +
              "  (3, 'Java SE'),\n" +

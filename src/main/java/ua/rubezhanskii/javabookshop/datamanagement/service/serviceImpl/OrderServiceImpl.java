@@ -1,25 +1,32 @@
-/*package ua.rubezhanskii.javabookshop.datamanagement.service.serviceImpl;
+package ua.rubezhanskii.javabookshop.datamanagement.service.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
+import org.springframework.stereotype.Service;
 import ua.rubezhanskii.javabookshop.datamanagement.repository.OrderRepository;
 import ua.rubezhanskii.javabookshop.datamanagement.service.CartService;
 import ua.rubezhanskii.javabookshop.datamanagement.service.OrderService;
 import ua.rubezhanskii.javabookshop.dto.CartItemDto;
+import ua.rubezhanskii.javabookshop.model.Customer;
 import ua.rubezhanskii.javabookshop.model.Order;
 
 import java.util.List;
 
 
-@Repository
+@Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
     @Autowired
     private CartService cartService;
+
+    @Override
+    public List<Order> getOrdersByCustomer(Customer customer) {
+        return orderRepository.getOrdersByCustomer(customer);
+    }
 
     @Override
     public void saveOrder() {
@@ -32,4 +39,4 @@ public class OrderServiceImpl implements OrderService {
 
 
     }
-}*/
+}

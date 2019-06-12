@@ -1,23 +1,27 @@
 package ua.rubezhanskii.javabookshop.datamanagement.service.serviceImpl;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ua.rubezhanskii.javabookshop.datamanagement.repository.BookRepository;
 import ua.rubezhanskii.javabookshop.datamanagement.service.BookService;
+import ua.rubezhanskii.javabookshop.datamanagement.service.CategoryService;
 import ua.rubezhanskii.javabookshop.model.Book;
+import ua.rubezhanskii.javabookshop.model.Category;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
+@AllArgsConstructor
 public class BookServiceImpl implements BookService {
 
 	@Autowired
     private BookRepository bookRepository;
-
-
+	@Autowired
+    private CategoryService categoryService;
 
 
     @Override
@@ -51,7 +55,8 @@ public class BookServiceImpl implements BookService {
         List<Book> neededBooks=new ArrayList<>();
         List<Book> allBooks= getBooks();
         allBooks.forEach(book -> {
-            if((book.getCategory().getCategoryId())==categoryId){
+
+            if((book.getCategory().getCategoryId()).equals(categoryId)){
                 neededBooks.add(book);
             }
         });

@@ -1,21 +1,26 @@
-package ua.rubezhanskii.javabookshop.controller;/*package ua.rubezhanskii.javabookshop.controller;
+package ua.rubezhanskii.javabookshop.controller;
 
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import ua.rubezhanskii.datamanagement.jdbc.OrderJdbcTemplate;
+import ua.rubezhanskii.javabookshop.datamanagement.service.CustomerService;
+import ua.rubezhanskii.javabookshop.datamanagement.service.OrderService;
+import ua.rubezhanskii.javabookshop.model.Customer;
 import ua.rubezhanskii.javabookshop.model.Order;
 
 @Controller
 @RequestMapping(value = "/welcome/rest/order")
+@AllArgsConstructor
 public class OrderController {
 
     @Autowired
-    private OrderJdbcTemplate orderJdbcTemplate;
+    private OrderService orderService;
+    @Autowired
+    private CustomerService customerService;
 
     @RequestMapping(value = "/orderManager", method = RequestMethod.GET)
     public String login() {
@@ -33,12 +38,11 @@ public class OrderController {
 
     @RequestMapping(value = "/searchResult", method = RequestMethod.GET)
     public ModelAndView getFilterByDate(Order order, ModelAndView model) {
-        // Order order=new Order();
-        model.addObject("listOrders", orderJdbcTemplate.getOrdersByCustomer("Rubezhanskii"));
-       //  model.addObject("customerAttribute",customerAttribute);
+        Customer customer = customerService.getCustomer("vitalii.rubezhanskii@gmail.com");
+        model.addObject("listOrders", orderService.getOrdersByCustomer(customer));
+//         model.addObject("customerAttribute",customerAttribute);
         model.setViewName("OrderManager");
         return model;
     }
 
 }
-*/

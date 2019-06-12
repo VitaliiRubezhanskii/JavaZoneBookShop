@@ -1,7 +1,6 @@
 package ua.rubezhanskii.javabookshop.datamanagement.service.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ua.rubezhanskii.javabookshop.datamanagement.repository.CartRepository;
 import ua.rubezhanskii.javabookshop.datamanagement.service.CartService;
@@ -29,8 +28,8 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void delete(String globalId) {
-        cartRepository.delete(globalId);
+    public void delete(Integer globalId) {
+        cartRepository.deleteById(globalId);
     }
 
     @Override
@@ -38,29 +37,29 @@ public class CartServiceImpl implements CartService {
         cartRepository.deleteAll();
     }
 
-
-   /* @Override
-    public List<Cart> getCartItems(){
-        return cartRepository.findAll();
-    }
-
-    @Override
-    public List<Cart>getCartByCustomer(Integer customerId){
-        List<Cart> carts=new ArrayList<>();
-      List<Cart>items=this.getCartItems();
-
-              items.forEach(item->{
-          if(item.getCustomer().getCustomerId()==customerId) {
-              carts.add(item);
-          }
-      });
-      return carts;
-    }
-
-    @Override
-    public Cart getCartById(String globalId){
-        return cartRepository.findOne(globalId);
-    }*/
+//
+//    @Override
+//    public List<Cart> getCartItems(){
+//        return cartRepository.findAll();
+//    }
+//
+//    @Override
+//    public List<Cart>getCartByCustomer(Integer customerId){
+//        List<Cart> carts=new ArrayList<>();
+//      List<Cart>items=this.getCartItems();
+//
+//              items.forEach(item->{
+//          if(item.getCustomer().getCustomerId()==customerId) {
+//              carts.add(item);
+//          }
+//      });
+//      return carts;
+//    }
+//
+//    @Override
+//    public Cart getCartById(String globalId){
+//        return cartRepository.findOne(globalId);
+//    }
 
     @Override
     public List<CartItemDto> getCartItems() {
@@ -69,7 +68,7 @@ public class CartServiceImpl implements CartService {
         List<Cart> carts=cartRepository.findAll();
 
         carts.forEach(cart -> {
-          itemDto.setBook(cart.getBook());
+          itemDto.setBooks(cart.getBooks());
           itemDto.setCustomer(cart.getCustomer());
           cartItemDtos.add(itemDto);
         });
@@ -83,7 +82,7 @@ public class CartServiceImpl implements CartService {
 
         carts.forEach(cart -> {
             if(cart.getCustomer().getCustomerId()==customerId) {
-                itemDto.setBook(cart.getBook());
+                itemDto.setBooks(cart.getBooks());
                 itemDto.setCustomer(cart.getCustomer());
                 cartItemDtos.add(itemDto);
             }
@@ -92,12 +91,4 @@ public class CartServiceImpl implements CartService {
 
 
     }
-
-    /*public void saveOrder(){
-        List<CartItemDto> cartItems= getCartItemsByCustomerId(1);
-
-    }*/
-
-
-
 }

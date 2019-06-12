@@ -1,5 +1,6 @@
 package ua.rubezhanskii.javabookshop.datamanagement.service.serviceImpl;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ua.rubezhanskii.javabookshop.datamanagement.repository.CategoryRepository;
@@ -10,6 +11,7 @@ import java.util.List;
 
 
 @Repository
+@AllArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
@@ -28,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void delete(Integer categoryId) {
-        categoryRepository.delete(categoryId);
+        categoryRepository.deleteById(categoryId);
     }
 
     @Override
@@ -38,16 +40,17 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategoryById(Integer categoryId) {
-        return categoryRepository.findOne(categoryId);
+        return categoryRepository.findById(categoryId).orElse(new Category());
     }
 
-  /*  @Override
-    public Category getCategoryOfBook(Book book){
-        return categoryRepository.getCategoryOfBook(book.getISBN());
+   @Override
+    public Category getCategoryOfBook(String ISBN){
+        Integer id = categoryRepository.getCategoryOfBook(ISBN);
+        return getCategoryById(id);
    }
-*/
+
     @Override
     public boolean exists(Integer categoryId) {
-       return categoryRepository.exists(categoryId);
+       return categoryRepository.existsById(categoryId);
     }
 }

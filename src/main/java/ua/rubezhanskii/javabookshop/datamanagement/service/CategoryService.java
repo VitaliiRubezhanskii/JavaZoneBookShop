@@ -14,5 +14,7 @@ public interface CategoryService {
     Category getCategoryById(Integer categoryId);
     boolean exists(Integer categoryId);
 
+    Category getCategoryOfBook(String ISBN);
+
 
 }

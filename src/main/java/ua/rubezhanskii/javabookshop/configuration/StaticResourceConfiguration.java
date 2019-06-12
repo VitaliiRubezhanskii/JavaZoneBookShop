@@ -6,8 +6,9 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
@@ -26,7 +27,6 @@ public class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
                         "classpath:/static/css/",
                         "classpath:/static/js/");
     }
-
     @Bean
     public ClassLoaderTemplateResolver templateResolver() {
 

@@ -37,7 +37,7 @@ public class CartController {
 
     //<==========================================Remove Category=======================================================>
     @RequestMapping(value = "/remove/{bookId}")
-    private ModelAndView removeCartItem(@PathVariable("globalId") String globalId) {
+    private ModelAndView removeCartItem(@PathVariable("globalId") Integer globalId) {
         cartService.delete(globalId);
         return new ModelAndView("redirect:/welcome/rest/cart/");
     }

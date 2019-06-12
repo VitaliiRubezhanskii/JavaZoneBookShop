@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import ua.rubezhanskii.javabookshop.model.Cart;
 
 @Repository
-public interface CartRepository extends JpaRepository<Cart,String> {
+public interface CartRepository extends JpaRepository<Cart, Integer> {
 
     @Query("SELECT  cart FROM Cart cart WHERE cart.customer.customerId=:customerId")
     Cart getCartByCustomer(@Param("customerId") Integer customerId);

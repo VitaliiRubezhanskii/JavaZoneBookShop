@@ -11,7 +11,7 @@ public interface CartService {
 
 
     void save(Cart cart);
-    void delete(String globalId);
+    void delete(Integer globalId);
     void deleteAll();
     List<CartItemDto> getCartItems();
     List<CartItemDto>getCartByCustomer(Integer customerId);

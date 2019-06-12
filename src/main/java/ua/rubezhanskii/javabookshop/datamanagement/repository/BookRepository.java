@@ -14,11 +14,11 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book,Integer> {
 
-    @Query("SELECT book FROM Book book WHERE book.category=:categoryName")
-    List<Book> getAllBooksWithinCategory(@Param("categoryName") String categoryName);
+//    @Query("SELECT book FROM Book book WHERE book.category=:categoryName")
+//    List<Book> getAllBooksWithinCategory(@Param("categoryName") String categoryName);
 
-    @Query("SELECT book.category FROM Book book WHERE book.ISBN=:isbn")
-    String getCategoryOfBook(@Param("isbn") String isbn);
+    @Query(value = "select category_categoryId from category inner join category_book on category.categoryId = category_book.category_categoryId where category_book.books_bookId = (select bookId from book where ISBN = :ISBN)", nativeQuery = true)
+    String getCategoryOfBook(@Param("ISBN") String isbn);
 
     @Query("SELECT book FROM Book book WHERE  book.bookTitle LIKE :title")
     List<Book>searchBook(@Param("title") String title);

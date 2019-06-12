@@ -125,7 +125,7 @@ public class BookJdbcTest {
 
         QueryRunner runner=new QueryRunner();
         String testQuery="INSERT INTO book(coverImage, authorId, price, bookTitle, categoryId,  publisher, ISBN, lang, details,inventoryStock) VALUES (?,?,?,?,?,?,?,?,?,?)";
-        Book book=new Book(50,"coverTest",5.0,"TestTitle",null,"testPub","testIsbn","testLang","testDetails",null,null,1,2);
+        Book book=new Book(50,"coverTest",5.0,"TestTitle", null, "testPub", "testIsbn","testLang","testDetails",null,null,1,2);
         int rowsInserted=runner.update(connection,testQuery,book.getCoverImage(),15,book.getPrice(),book.getBookTitle(),89,book.getPublisher(),book.getISBN(),book.getLanguage(),book.getDetails(),book.getInventoryStock());
         assertEquals(rowsInserted,1);
     }
@@ -134,7 +134,7 @@ public class BookJdbcTest {
 
         QueryRunner runner=new QueryRunner();
         String testQuery="INSERT INTO book(coverImage, authorId, price, bookTitle, categoryId,  publisher, ISBN, lang, details,inventoryStock) VALUES (?,?,?,?,?,?,?,?,?,?)";
-        Book book=new Book(50,"coverTest",5.0,"TestTitle",null,"testPub","testIsbn","testLang","testDetails",null,null,1,2);
+        Book book=new Book(50,"coverTest",5.0,"TestTitle", null, "testPub","testIsbn","testLang","testDetails",null,null,1,2);
         int idExpected=runner.insert(connection,testQuery,new ScalarHandler<Integer>(),book.getCoverImage(),15,book.getPrice(),book.getBookTitle(),89,book.getPublisher(),book.getISBN(),book.getLanguage(),book.getDetails(),book.getInventoryStock());
         assertEquals(idExpected,41);
     }

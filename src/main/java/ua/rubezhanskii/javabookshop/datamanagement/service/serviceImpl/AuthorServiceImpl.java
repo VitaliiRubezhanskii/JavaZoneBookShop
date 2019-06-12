@@ -23,6 +23,6 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author getAuthorOfBook(Integer authorId) {
-       return authorRepository.findOne(authorId);
+       return authorRepository.findById(authorId).orElse(new Author());
     }
 }

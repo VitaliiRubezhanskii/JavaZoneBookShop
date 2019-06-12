@@ -98,6 +98,7 @@ CREATE INDEX fk_username_idx
 
 CREATE TABLE users
 (
+
   username VARCHAR(45)         NOT NULL
     PRIMARY KEY,
   password VARCHAR(60)         NOT NULL,

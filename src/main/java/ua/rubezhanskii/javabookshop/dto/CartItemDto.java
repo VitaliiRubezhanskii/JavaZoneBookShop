@@ -1,37 +1,22 @@
 package ua.rubezhanskii.javabookshop.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ua.rubezhanskii.javabookshop.model.Book;
 import ua.rubezhanskii.javabookshop.model.Customer;
 
+import java.util.Collections;
+import java.util.Set;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CartItemDto {
 
+    private Set<Book> books = Collections.emptySet();
 
-    public CartItemDto() {
-    }
-
-    public CartItemDto(Book book, Customer customer) {
-        this.book = book;
-        this.customer = customer;
-    }
-
-    private Book book;
     private Customer customer;
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }
 
 
