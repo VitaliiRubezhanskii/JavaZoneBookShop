@@ -29,8 +29,6 @@ public class OrderController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getFilterByCustomer(Order order, ModelAndView model) {
-        //Order order=new Order();
-        // model.addObject("customerAttribute", );
         model.addObject("order",order);
         model.setViewName("OrderManager");
         return model;
@@ -40,7 +38,6 @@ public class OrderController {
     public ModelAndView getFilterByDate(Order order, ModelAndView model) {
         Customer customer = customerService.getCustomer("vitalii.rubezhanskii@gmail.com");
         model.addObject("listOrders", orderService.getOrdersByCustomer(customer));
-//         model.addObject("customerAttribute",customerAttribute);
         model.setViewName("OrderManager");
         return model;
     }

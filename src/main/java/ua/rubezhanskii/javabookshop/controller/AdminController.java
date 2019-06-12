@@ -15,7 +15,7 @@ public class AdminController {
         ModelAndView model = new ModelAndView();
         model.addObject("title", "Spring Security Login Form - Database Authentication");
         model.addObject("message", "This is default page!");
-        model.setViewName("hello");
+        model.setViewName("FrontPage");
         return model;
 
     }
@@ -26,7 +26,7 @@ public class AdminController {
         ModelAndView model = new ModelAndView();
         model.addObject("title", "Spring Security Login Form - Database Authentication");
         model.addObject("message", "This page is for ROLE_ADMIN only!");
-        model.setViewName("admin");
+        model.setViewName("AdminPage");
         return model;
 
     }
