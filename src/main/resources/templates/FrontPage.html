@@ -50,11 +50,10 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            <a href="#"> My Orders <span class="badge">0</span></a>
+            <a href="#" th:href="@{/logout}">Log Out</a>
         </li>
         <li>
-
-
+            <a href="#"> My Orders <span class="badge">0</span></a>
         </li>
 
         <li>
@@ -89,8 +88,9 @@
                 <input type="password" class="form-control" id="Password" placeholder="Password"  />
             </div>
 
-
-            <button type="submit" class="btn btn-success">Sign in</button>
+            <form id="signIn" th:href="@{/login}">
+                <button class="btn btn-success">Sign in</button>
+            </form>
         </form>
 
 
@@ -128,6 +128,7 @@
 
 
             <button type="submit" class="btn btn-success">Sign up</button>
+
         </form>
     </div>
 </div>

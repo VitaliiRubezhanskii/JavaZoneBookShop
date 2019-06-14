@@ -8,6 +8,7 @@ import ua.rubezhanskii.javabookshop.datamanagement.service.CategoryService;
 import ua.rubezhanskii.javabookshop.model.Category;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -39,12 +40,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategoryById(Integer categoryId) {
-        return categoryRepository.findById(categoryId).orElse(new Category());
+    public Optional<Category> getCategoryById(Integer categoryId) {
+        return categoryRepository.findById(categoryId);
     }
 
    @Override
-    public Category getCategoryOfBook(String ISBN){
+    public Optional<Category> getCategoryOfBook(String ISBN){
         Integer id = categoryRepository.getCategoryOfBook(ISBN);
         return getCategoryById(id);
    }

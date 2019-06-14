@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.rubezhanskii.javabookshop.security.beans.UserRegistrationDto;
@@ -15,20 +17,22 @@ import ua.rubezhanskii.javabookshop.security.model.User;
 import ua.rubezhanskii.javabookshop.security.repository.RoleRepository;
 import ua.rubezhanskii.javabookshop.security.repository.UserRepository;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
-public class UserSecurityServiceImpl implements UserSecurityService {
+public class UserSecurityServiceImpl implements UserSecurityService,  UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public Optional<User> findUserByEmail(String email) {
@@ -40,9 +44,10 @@ public class UserSecurityServiceImpl implements UserSecurityService {
         User user = new User();
         user.setName(userData.getFirstName());
         user.setLastName(userData.getLastName());
-        user.setPassword(passwordEncoder.encode(userData.getPassword()));
+        user.setPassword(bCryptPasswordEncoder.encode(userData.getPassword()));
         user.setEmail(userData.getEmail());
-        user.setRoles(userData.getRoles());
+        user.setRoles(new HashSet<Role>(Arrays.asList(new Role("ROLE_USER"))));
+        userRepository.save(user);
         return user;
     }
 

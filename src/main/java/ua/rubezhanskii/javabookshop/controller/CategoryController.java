@@ -51,8 +51,9 @@ public class CategoryController {
 
     @RequestMapping("/edit/{categoryId}")
     public ModelAndView editPerson(@PathVariable("categoryId") Integer categoryId){
-             Category category=categoryService.getCategoryById(categoryId);
-        return new ModelAndView("addCategory","newCategory",category);
+        ModelAndView modelAndView = new ModelAndView("addCategory");
+        categoryService.getCategoryById(categoryId).ifPresent(category -> modelAndView.addObject("newCategory", category));
+        return modelAndView;
 
     }
 

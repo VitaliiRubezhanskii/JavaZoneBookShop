@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ua.rubezhanskii.javabookshop.model.Book;
+import ua.rubezhanskii.javabookshop.model.Category;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ public interface BookRepository extends JpaRepository<Book,Integer> {
 
     @Query("SELECT book FROM Book book WHERE book.ISBN=:isbn")
     Book getBookByIsbn(@Param("isbn") String isbn);
+
+    List<Book> getAllByCategory(Category category);
 
 
 

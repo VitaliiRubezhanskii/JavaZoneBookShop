@@ -23,7 +23,7 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getIndexPage() {
-        return "AdminRegisterCust";
+        return "BookPage";
     }
 
 
