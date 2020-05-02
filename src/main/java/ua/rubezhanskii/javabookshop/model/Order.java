@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name = "orders")
 @Data
 @RequiredArgsConstructor
-@EqualsAndHashCode(exclude = {"orderItems", "customers"})
+@EqualsAndHashCode(exclude = {"orderItems", "customers", "shipping"})
 public class Order implements Serializable {
 
     @Id
@@ -34,4 +34,8 @@ public class Order implements Serializable {
     @JoinColumn(name = "customer_id")
     @JsonIgnore
     private Customer customer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shipping_id")
+    private Shipping shipping;
 }

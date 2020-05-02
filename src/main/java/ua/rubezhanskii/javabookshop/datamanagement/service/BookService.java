@@ -10,7 +10,7 @@ public interface BookService {
 
     BookDto save(Book book);
 
-    void delete(Book book);
+    void delete(Integer id);
 
     List<BookDto> getBooks();
 

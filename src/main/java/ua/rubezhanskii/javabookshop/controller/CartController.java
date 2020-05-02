@@ -4,15 +4,19 @@ package ua.rubezhanskii.javabookshop.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ua.rubezhanskii.javabookshop.datamanagement.mapping.OrderItemMapper;
 import ua.rubezhanskii.javabookshop.datamanagement.service.*;
 import ua.rubezhanskii.javabookshop.dto.OrderItemDto;
+import ua.rubezhanskii.javabookshop.dto.ShippingDto;
 import ua.rubezhanskii.javabookshop.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -24,14 +28,12 @@ public class CartController {
 
     private final OrderService orderService;
 
-    private final OrderItemMapper orderItemMapper;
+    private final ShippingService shippingService;
 
-
-    //<======================================get View with Cart Items==================================================>
     @GetMapping
     public ModelAndView getCartPage(@ModelAttribute("cartItem") Book book, ModelAndView model) {
         Customer customer = customerService.getCustomerByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        List<OrderItemDto> items =  orderItemMapper.toDtoList(new ArrayList<>(customer.getOrderItems()));
+        List<OrderItem> items = customer.getOrderItems().stream().filter(o->o.getOrder().getStatus() == OrderStatus.IN_PROGRESS).collect(Collectors.toList());
         model.addObject("listItems", items);
         model.addObject("cartItem", new Book());
         model.addObject("total", items.size());
@@ -49,9 +51,16 @@ public class CartController {
       orderService.save(order);
       modelAndView.setViewName("Checkout");
       return modelAndView;
+    }
 
+    @PostMapping(value = "/checkout")
+    public String sendShippingInfo(@ModelAttribute("shipping") Shipping shipping, ModelAndView model) {
+//        model.("shipping", new ShippingDto());
+        model.setViewName("Checkout");
 
+        ShippingDto shippingDto = shippingService.save(shipping);
 
+        return "Checkout";
     }
 
     //<==========================================Remove Category=======================================================>

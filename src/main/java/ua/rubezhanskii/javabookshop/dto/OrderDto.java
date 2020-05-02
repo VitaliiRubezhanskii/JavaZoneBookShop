@@ -11,7 +11,6 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class OrderDto {
 
-
     private Integer orderId;
 
     private LocalDateTime orderDate;
@@ -21,5 +20,7 @@ public class OrderDto {
     private Set<OrderItemDto> orderItems;
 
     private CustomerDto customer;
+
+    private ShippingDto shipping;
 
 }

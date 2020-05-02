@@ -1,6 +1,7 @@
 package ua.rubezhanskii.javabookshop.controller;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,12 +14,10 @@ import ua.rubezhanskii.javabookshop.model.Category;
 
 @Controller
 @RequestMapping(value = "/welcome/admin/categories")
+@RequiredArgsConstructor
 public class CategoryController {
 
-
-
-    @Autowired
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
     //<======================================get View with Categories==================================================>
     @RequestMapping(value = "/", method = RequestMethod.GET)

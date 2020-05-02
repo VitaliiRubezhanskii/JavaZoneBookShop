@@ -59,4 +59,9 @@ public class Customer implements Serializable {
 
     @Column(name = "login")
     private String login;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Shipping> shippings;
+
+
 }
