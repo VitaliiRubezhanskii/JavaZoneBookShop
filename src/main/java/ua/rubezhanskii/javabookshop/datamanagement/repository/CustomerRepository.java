@@ -7,11 +7,9 @@ import org.springframework.stereotype.Repository;
 import ua.rubezhanskii.javabookshop.model.Customer;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer,Integer> {
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
-    @Query("SELECT customer FROM Customer customer WHERE customer.email=:email")
-    Customer getCustomer(@Param("email") String email);
-
+    Customer findCustomerByEmail(String email);
 
 
 }

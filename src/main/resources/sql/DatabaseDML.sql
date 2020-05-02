@@ -147,16 +147,8 @@ INSERT INTO category (category_id, category_name) VALUES
 
 
 INSERT INTO customer (customer_id, first_name, last_name, address, city, zip, country, phone_home, phone_mobile, email, login) VALUES
-  (1, 'Vitalii', 'Rubezhanskii', 'Hv. Shyronintsev,67', 'Kharkov', 61100, 'Ukraine', '', +380502788594, 'vitalii.rubezhanskii@gmail.com', 'mkyong'),
+  (1, 'Vitalii', 'Rubezhanskii', 'Hv. Shyronintsev,67', 'Kharkov', 61100, 'Ukraine', '', +380502788594, 'vitalik.rubezhanskii@gmail.com', 'mkyong'),
   (2, 'Sergey', 'Rubezhanskii', 'Vesnyana 38', 'Burluk', 61110, 'Ukraine', '', +380502788531, 'sergey.rubezhanskii@gmail.com', 'sergey'),
   (6, 'Denis', 'Petrov', 'Pavlovka', 'Kharkov', 61000, 'Ukraine', 502788594, 502788594, 'Vitalii.Rubezhanskii@gmail.com', NULL);
 
 
-INSERT INTO users (username, password, enabled, role) VALUES
-  ('admin', '$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.', 1, 'ROLE_USER'),
-  ('Vitalii', '$2a$10$TOKiNP5wXzYCzR3x4qPJ8uEj8qByzoQb6WPhCLJ9DQo5yrW8DRi4S', 1, NULL);
-
-INSERT INTO user_roles (user_role_id, username, role) VALUES
-  (2, 'admin', 'ROLE_ADMIN'),
-  (1, 'admin', 'ROLE_USER'),
-  (6, 'Vitalii', 'ROLE_USER');

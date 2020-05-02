@@ -1,28 +1,32 @@
 package ua.rubezhanskii.javabookshop.datamanagement.service.serviceImpl;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import ua.rubezhanskii.javabookshop.datamanagement.mapping.AuthorMapper;
 import ua.rubezhanskii.javabookshop.datamanagement.repository.AuthorRepository;
 import ua.rubezhanskii.javabookshop.datamanagement.service.AuthorService;
+import ua.rubezhanskii.javabookshop.dto.AuthorDto;
 import ua.rubezhanskii.javabookshop.model.Author;
 
 
 @Service
+@RequiredArgsConstructor
 public class AuthorServiceImpl implements AuthorService {
 
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
 
+    private final AuthorMapper authorMapper;
 
     @Override
-    public Integer save(Author author) {
-        Author savedAuthor=authorRepository.save(author);
-        return  savedAuthor.getAuthorId();
+    public AuthorDto save(Author author) {
+        return authorMapper.toDto(authorRepository.save(author));
     }
 
     @Override
-    public Author getAuthorOfBook(Integer authorId) {
-       return authorRepository.findById(authorId).orElse(new Author());
+    public AuthorDto getAuthorOfBook(Integer authorId) {
+       Author author = authorRepository.findById(authorId).orElse(new Author());
+       return authorMapper.toDto(author);
     }
 }

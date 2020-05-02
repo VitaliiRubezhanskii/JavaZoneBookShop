@@ -1,9 +1,9 @@
 package ua.rubezhanskii.javabookshop.datamanagement.service.serviceImpl;
 
 
-
-import org.springframework.stereotype.Repository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ua.rubezhanskii.javabookshop.datamanagement.repository.CustomerRepository;
 import ua.rubezhanskii.javabookshop.datamanagement.service.CustomerService;
 import ua.rubezhanskii.javabookshop.model.Customer;
 
@@ -11,7 +11,10 @@ import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
+
+    private final CustomerRepository customerRepository;
 
     @Override
     public void saveOrUpdate(Customer customer) {
@@ -24,8 +27,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomer(String email) {
-        return null;
+    public Customer getCustomerByEmail(String email) {
+        return customerRepository.findCustomerByEmail(email);
     }
 
     @Override

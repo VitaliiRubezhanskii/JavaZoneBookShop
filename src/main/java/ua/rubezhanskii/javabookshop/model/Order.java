@@ -1,34 +1,37 @@
 package ua.rubezhanskii.javabookshop.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
-@Table(name = "ordertable")
+@Table(name = "orders")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
+@RequiredArgsConstructor
+@EqualsAndHashCode(exclude = {"orderItems", "customers"})
 public class Order implements Serializable {
-
-    private static final long serial_UID=6L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "orderId")
+    @Column(name = "order_id")
     private Integer orderId;
 
-    @Column(name = "orderDate")
-    private Date orderDate;
+    @Column(name = "order_date")
+    private LocalDateTime orderDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="customerId")
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    private OrderStatus status;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrderItem> orderItems;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    @JsonIgnore
     private Customer customer;
 }
-

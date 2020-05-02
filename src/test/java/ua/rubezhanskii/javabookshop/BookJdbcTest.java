@@ -120,24 +120,24 @@ public class BookJdbcTest {
         assertEquals(books.size(),40);
     }
 
-    @Test
-    public void save_Books_Should_save_Only_One_Row() throws Exception{
-
-        QueryRunner runner=new QueryRunner();
-        String testQuery="INSERT INTO book(coverImage, authorId, price, bookTitle, categoryId,  publisher, ISBN, lang, details,inventoryStock) VALUES (?,?,?,?,?,?,?,?,?,?)";
-        Book book=new Book(50,"coverTest",5.0,"TestTitle", null, "testPub", "testIsbn","testLang","testDetails",null,null,1,2);
-        int rowsInserted=runner.update(connection,testQuery,book.getCoverImage(),15,book.getPrice(),book.getBookTitle(),89,book.getPublisher(),book.getISBN(),book.getLanguage(),book.getDetails(),book.getInventoryStock());
-        assertEquals(rowsInserted,1);
-    }
-    @Test
-    public void save_Books_Should_save_with_proper_ID() throws Exception{
-
-        QueryRunner runner=new QueryRunner();
-        String testQuery="INSERT INTO book(coverImage, authorId, price, bookTitle, categoryId,  publisher, ISBN, lang, details,inventoryStock) VALUES (?,?,?,?,?,?,?,?,?,?)";
-        Book book=new Book(50,"coverTest",5.0,"TestTitle", null, "testPub","testIsbn","testLang","testDetails",null,null,1,2);
-        int idExpected=runner.insert(connection,testQuery,new ScalarHandler<Integer>(),book.getCoverImage(),15,book.getPrice(),book.getBookTitle(),89,book.getPublisher(),book.getISBN(),book.getLanguage(),book.getDetails(),book.getInventoryStock());
-        assertEquals(idExpected,41);
-    }
+//    @Test
+//    public void save_Books_Should_save_Only_One_Row() throws Exception{
+//
+//        QueryRunner runner=new QueryRunner();
+//        String testQuery="INSERT INTO book(coverImage, authorId, price, bookTitle, categoryId,  publisher, ISBN, lang, details,inventoryStock) VALUES (?,?,?,?,?,?,?,?,?,?)";
+//        Book book=new Book(50,"coverTest",5.0,"TestTitle", null, "testPub", "testIsbn","testLang","testDetails",null,null,1,2);
+//        int rowsInserted=runner.update(connection,testQuery,book.getCoverImage(),15,book.getPrice(),book.getBookTitle(),89,book.getPublisher(),book.getISBN(),book.getLanguage(),book.getDetails(),book.getInventoryStock());
+//        assertEquals(rowsInserted,1);
+//    }
+//    @Test
+//    public void save_Books_Should_save_with_proper_ID() throws Exception{
+//
+//        QueryRunner runner=new QueryRunner();
+//        String testQuery="INSERT INTO book(coverImage, authorId, price, bookTitle, categoryId,  publisher, ISBN, lang, details,inventoryStock) VALUES (?,?,?,?,?,?,?,?,?,?)";
+//        Book book=new Book(50,"coverTest",5.0,"TestTitle", null, "testPub","testIsbn","testLang","testDetails",null,null,1,2);
+//        int idExpected=runner.insert(connection,testQuery,new ScalarHandler<Integer>(),book.getCoverImage(),15,book.getPrice(),book.getBookTitle(),89,book.getPublisher(),book.getISBN(),book.getLanguage(),book.getDetails(),book.getInventoryStock());
+//        assertEquals(idExpected,41);
+//    }
 
     @Test
     public  void get_Book_By_Id_Must_Return_book_with_correct_id() throws Exception{
@@ -176,8 +176,4 @@ public class BookJdbcTest {
                         DbUtils.closeQuietly(connection);
 
                     }
-
-
-
-
 }

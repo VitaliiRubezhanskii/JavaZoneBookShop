@@ -5,17 +5,13 @@ import org.springframework.stereotype.Repository;
 import ua.rubezhanskii.javabookshop.model.Customer;
 import ua.rubezhanskii.javabookshop.model.Order;
 import ua.rubezhanskii.javabookshop.model.OrderItem;
-import ua.rubezhanskii.javabookshop.model.OrderStatus;
 
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Integer> {
+public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
 
-    List<Order> findAllByCustomer(Customer customer);
+        List<OrderItem> findOrderItemsByCustomer(Customer customer);
 
-    Order findAllByCustomerAndStatus(Customer customer, OrderStatus status);
-
-
-
+        Integer countOrderItemsByCustomer(Customer customer);
 }

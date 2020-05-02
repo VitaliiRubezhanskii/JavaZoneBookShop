@@ -1,10 +1,8 @@
 package ua.rubezhanskii.javabookshop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,23 +12,21 @@ import java.util.Set;
 @Entity
 @Table(name="category")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
-public class Category implements Serializable {
-
-    private static final long serial_UID=4L;
+@RequiredArgsConstructor
+@EqualsAndHashCode(exclude = "books")
+public class Category  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="categoryId")
+    @Column(name="category_id")
     private Integer categoryId;
 
-    @Column(name="categoryName")
+    @Column(name="category_name")
     private String category;
 
     @OneToMany( mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Book> books = Collections.emptySet();
+    @JsonIgnore
+    private Set<Book> books ;
 }
 
 

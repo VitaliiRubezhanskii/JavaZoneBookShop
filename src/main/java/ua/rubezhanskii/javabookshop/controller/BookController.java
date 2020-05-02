@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ua.rubezhanskii.javabookshop.datamanagement.service.BookService;
+import ua.rubezhanskii.javabookshop.dto.BookDto;
 import ua.rubezhanskii.javabookshop.model.Book;
 
 @Controller
@@ -31,7 +32,7 @@ public class BookController {
     //<==========================================Add Book==========================================================>
     @RequestMapping(value = "/addBook", method = RequestMethod.POST)
     public ModelAndView saveOrUpdate(@ModelAttribute("book")Book book) {
-            bookService.saveOrUpdate(book);
+            bookService.save(book);
         return new ModelAndView("redirect:/welcome/rest/books/");
     }
     //<==========================================Remove Category==========================================================>
@@ -44,14 +45,14 @@ public class BookController {
 
     @RequestMapping("/edit/{bookId}")
     public ModelAndView editBook(@PathVariable("bookId") Integer bookId){
-        Book book=bookService.getBookById(bookId);
+        BookDto book = bookService.getBookById(bookId);
         return new ModelAndView("AdminPage","newBook",book);
 
     }
 
     @RequestMapping(value = "/edit/save",method = RequestMethod.POST)
     public ModelAndView editSave(@ModelAttribute("book") Book book){
-        bookService.saveOrUpdate(book);
+        bookService.save(book);
         return new ModelAndView("redirect:/welcome/rest/books/");
     }
 

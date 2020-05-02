@@ -1,10 +1,7 @@
 package ua.rubezhanskii.javabookshop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,29 +13,26 @@ import java.util.Set;
 @Entity
 @Table(name="book")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
-public class Book implements Serializable {
-
-    private static final long serial_UID=3L;
+@RequiredArgsConstructor
+@EqualsAndHashCode(exclude = {"category", "authors", "orderItems"})
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="bookId")
+    @Column(name="book_id")
     private Integer bookId;
 
-    @Column(name="coverImage")
+    @Column(name="cover_image")
     private String coverImage;
 
     @Column(name="price")
     private Double price;
 
-    @Column(name="bookTitle")
+    @Column(name="book_title")
     private String bookTitle;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoryId")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @Column(name="publisher")
@@ -55,16 +49,16 @@ public class Book implements Serializable {
 
     @ManyToMany(mappedBy = "books")
     @JsonIgnore
-    private Set<Author> authors = Collections.emptySet();
+    private Set<Author> authors;
 
-    @ManyToMany(mappedBy = "books")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private Set<Cart> carts = Collections.emptySet();
+    private Set<OrderItem> orderItems;
 
-    @Column(name="bookQuantity")
+    @Column(name="book_quantity")
     private Integer bookQuantity;
 
-    @Column(name="inventoryStock")
+    @Column(name="inventory_stock")
     private Integer InventoryStock;
 }
 

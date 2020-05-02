@@ -8,6 +8,7 @@
 
     <title> JavaZone</title>
 
+
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"  type="text/css"   rel="stylesheet" />
     <link th:href="@{/css/FontPage.css}"  type="text/css" />
     <link  rel="stylesheet" type="text/css" th:href="@{/css/FontPage2.css}"/>
@@ -31,7 +32,6 @@
 <div class=" navbar navbar-default navbar-fixed-top" id="navbar-collapse-2">
 
     <ul class="nav navbar-nav navbar-left">
-
         <li>
             <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>
         </li>
@@ -157,10 +157,10 @@
 
                         <div  class="carousel-inner" role="listbox">
 
-                            <img th:attr="src=@{|/img/${SpringBook.coverImage}.jpg|},title=${SpringBook.coverImage}" class="card-block text-nowrap" alt="" width="150" height="200" />
+                            <img th:attr="src=@{|/img/${SpringBook.getCoverImage()}.jpg|},title=${SpringBook.getCoverImage()}" class="card-block text-nowrap" alt="" width="150" height="200" />
 
                             <div class="caption">
-                                <p th:text="|${SpringBook.price} $|"> </p>
+                                <p th:text="|${SpringBook.getPrice()} $|"> </p>
 
                                 <a th:href="@{'/welcome/book?ISBN='+${SpringBook.ISBN}}"  class="btn btn-primary">
                                     <span class="glyphicon-info-sign glyphicon"></span> Details
@@ -377,13 +377,10 @@
     </div>
 
 </div>
-
-
 </div>
 </div>
-<script th:src="@{/js/FrontPage.js}">
+<script th:src="@{/js/FrontPage.js}"></script>
 
-</script>
 <div id="footer-wrapper">
     <footer id="footer">
         <p class="text-center" ><font size="2" face="verdana">(c) 2018 <a href=""> Vitalii Rubezhanskii</a></font> </p>

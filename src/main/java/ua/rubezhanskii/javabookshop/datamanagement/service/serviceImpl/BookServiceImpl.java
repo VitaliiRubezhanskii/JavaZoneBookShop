@@ -1,77 +1,67 @@
 package ua.rubezhanskii.javabookshop.datamanagement.service.serviceImpl;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ua.rubezhanskii.javabookshop.datamanagement.mapping.BookMapper;
 import ua.rubezhanskii.javabookshop.datamanagement.repository.BookRepository;
 import ua.rubezhanskii.javabookshop.datamanagement.service.BookService;
 import ua.rubezhanskii.javabookshop.datamanagement.service.CategoryService;
+import ua.rubezhanskii.javabookshop.dto.BookDto;
 import ua.rubezhanskii.javabookshop.model.Book;
 import ua.rubezhanskii.javabookshop.model.Category;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
 
-	@Autowired
-    private BookRepository bookRepository;
-	@Autowired
-    private CategoryService categoryService;
+    private final BookRepository bookRepository;
 
+    private final BookMapper bookMapper;
+
+    private final CategoryService categoryService;
 
     @Override
-    public Book saveOrUpdate(Book book) {
-        return bookRepository.save(book);
+    public BookDto save(Book book) {
+        return bookMapper.toDto(bookRepository.save(book));
     }
 
     @Override
-    public Book delete(Book book) {
+    public void delete(Book book) {
          bookRepository.delete(book);
-         return book;
     }
 
     @Override
-    public List<Book> getBooks() {
-        return bookRepository.findAll();
+    public List<BookDto> getBooks() {
+        return bookMapper.toDtoList(bookRepository.findAll());
     }
 
     @Override
-    public List<Book> getAllBooksByCategory(Category category) {
-        return bookRepository.getAllByCategory(category);
+    public List<BookDto> getAllBooksByCategory(Category category) {
+        return bookMapper.toDtoList(bookRepository.findBooksByCategory(category));
     }
 
     @Override
-    public Book getBookById(Integer bookId) {
-        return bookRepository.getOne(bookId);
+    public BookDto getBookById(Integer bookId) {
+        return bookMapper.toDto(bookRepository.getOne(bookId));
     }
 
     @Override
-    public Book getBookByIsbn(String isbn) {
-        return bookRepository.getBookByIsbn(isbn);
+    public BookDto getBookByIsbn(String isbn) {
+        return bookMapper.toDto(bookRepository.getBookByIsbn(isbn));
     }
 
     @Override
-    public List<Book> getBooksFromCategory(Integer categoryId) {
-        List<Book> neededBooks=new ArrayList<>();
-        List<Book> allBooks= getBooks();
-        allBooks.forEach(book -> {
-
-            if((book.getCategory().getCategoryId()).equals(categoryId)){
-                neededBooks.add(book);
-            }
-        });
-
-        return neededBooks;
+    public List<BookDto> getBooksFromCategory(Integer categoryId) {
+        Category category = categoryService.getCategoryById(categoryId);
+        return bookMapper.toDtoList(bookRepository.findBooksByCategory(category));
     }
 
     @Override
-    public List<Book> searchBook(String title, String author) {
-        return bookRepository.searchBook(title);
+    public List<BookDto> searchBook(String title, String author) {
+        return bookMapper.toDtoList(bookRepository.searchBook(title));
     }
 
     @Override

@@ -4,7 +4,6 @@ package ua.rubezhanskii.javabookshop.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -17,20 +16,17 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 public class Customer implements Serializable {
-
-    private static final long serial_UID=5L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="customerId" )
+    @Column(name ="customer_id" )
     private Integer customerId;
 
-    @Column(name ="firstName" )
+    @Column(name ="first_name" )
     private String firstName;
 
-    @Column(name ="lastName" )
+    @Column(name ="last_name" )
     private String lastName;
 
     @Column(name ="address" )
@@ -45,10 +41,10 @@ public class Customer implements Serializable {
     @Column(name ="country" )
     private String country;
 
-    @Column(name ="phoneHome" )
+    @Column(name ="phone_home" )
     private String phoneHome;
 
-    @Column(name ="phoneMobile" )
+    @Column(name ="phone_mobile" )
     private String phoneMobile;
 
     @Column(name ="email" )
@@ -56,11 +52,10 @@ public class Customer implements Serializable {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private Set<Order> orders = new HashSet<>();
+    private Set<Order> orders ;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private Set<Cart> carts = new HashSet<>();
+    private Set<OrderItem> orderItems ;
 
     @Column(name = "login")
     private String login;

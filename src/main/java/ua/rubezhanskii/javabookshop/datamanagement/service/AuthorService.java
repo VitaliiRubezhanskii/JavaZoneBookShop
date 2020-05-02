@@ -1,12 +1,13 @@
 package ua.rubezhanskii.javabookshop.datamanagement.service;
 
+import ua.rubezhanskii.javabookshop.dto.AuthorDto;
 import ua.rubezhanskii.javabookshop.model.Author;
 
 import java.util.Optional;
 
 public interface AuthorService {
 
+    AuthorDto save(Author author);
 
-    Integer save(Author author);
-    Author getAuthorOfBook(Integer bookId);
+    AuthorDto getAuthorOfBook(Integer bookId);
 }

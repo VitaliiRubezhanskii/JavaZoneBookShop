@@ -15,7 +15,6 @@
 
     </head>
             <body>
-
             <div class=" navbar navbar-default navbar-fixed-top" id="navbar-collapse-2">
                 <ul class="nav navbar-nav">
                     <li>
@@ -37,14 +36,11 @@
                     <a href="" class="btn btn-danger pull-left">
                         <span class="glyphicon glyphicon-remove-sign"></span> Clear Cart
                     </a>
-
-                    <a th:href="@{/welcome/rest/checkout}"
+                    <a th:href="@{/welcome/rest/cart/checkout}"
                     class="btn btn-success pull-right">
                     <span class="glyphicon-shopping-cart glyphicon"></span> Check out
                     </a>
                 </div>
-
-
 
                     <div class="generic-container">
                         <div class="panel panel-default">
@@ -59,30 +55,19 @@
                                     <tbody>
                                             <tr th:each="item : ${listItems}">
                                                 <td class="card-block text-nowrap" th:attr="src=@{|/img/${item.book.coverImage}.jpg|}" alt="" width="90" height="135" ></td>
-                                                <td th:text="${item.book.bookTitle}"></td>
-                                                <td th:text="${item.book.author.author1}"></td>
-                                                <td th:text="${item.book.category.category}"> </td>
-                                                <td th:text="${item.book.price}"></td>
+                                                <td th:text="${item.book.getBookTitle()}"></td>
+                                                <td th:text="${item.book.getAuthors()[0].getAuthor1()}"></td>
+                                                <td th:text="${item.book.getCategory().getCategory()}"> </td>
+                                                <td th:text="${item.book.getPrice()}"></td>
                                             </tr>
                                     </tbody>
                             </table>
                         </div>
                     </div>
-
-
-
-
-
-                <h3 class="text-center">Total: ${total} $</h3>
-
-
+                <h3 class="text-center" th:text="'Total ' + ${total}"></h3>
                         <a th:href="@{welcome/home}">
-                        class="btn btn-default"> <span
-                            class="glyphicon-hand-left glyphicon"></span> Continue shopping
+                            <div class="btn btn-default"> <span class="glyphicon-hand-left glyphicon"></span> Continue shopping</div>
                         </a>
-
-
-
                         <div id="footer-wrapper">
                             <footer id="footer">
                                 <p class="text-center" ><font size="2" face="verdana">(c) 2018 <a href=""> Vitalii Rubezhanskii</a></font> </p>
